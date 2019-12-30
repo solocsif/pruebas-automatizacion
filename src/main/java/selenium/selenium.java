@@ -8,6 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import driver.driver;
 public class selenium extends driver{
+private int[] valors;
 public void abrir() {
 	System.setProperty("webdriver.chrome.driver","driver/chromedriver.exe");
 	driver= new ChromeDriver();
@@ -38,11 +39,35 @@ public void Enviarlosdatosdelcheck() throws InterruptedException {
 	boton.click();
 }
 public void elegirlatarifamasbarata() {
+	int valor[];
+	int menor;
+	int inter=0;
 	List<?> elements = (List<?>) driver.findElements(By.className("rate-number"));
+	valor = new int[elements.size()];
 	System.out.println ("Número de elementos:" + elements.size ());
 	for(Object e : elements) {
-		  System.out.println(((WebElement) e).getText());
+		  String hola;
+		  hola=((WebElement) e).getText().toString();
+		  String hi =(hola.replace("$", ""));
+		  Integer numero = Integer.parseInt(hi);
+		  valor[inter]=numero;
+		  inter=inter+1;
+		  
 		}
+	int comparar=0;
+	for (int i = 0; i < valor.length; i++) {
+		if(i==0) {
+			comparar=valor[i];
+		}if(i>0) {
+			if(comparar>valor[i]) {
+				comparar=valor[i];
+			}
+		}
+		
+			 
+		  }
+	menor=comparar;
+	System.out.println("el valor menor es: " + menor);
 	}
 }
 
